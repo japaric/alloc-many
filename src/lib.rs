@@ -80,9 +80,9 @@
 #[cfg(test)]
 extern crate self as alloc_many;
 
-use core::alloc::Layout;
+use core::alloc::{GlobalAlloc, Layout};
 
-pub use alloc_many_macros::{allocator, oom};
+pub use alloc_many_macros::{allocator, main_allocator, oom};
 
 /// Singleton version of [`core::alloc::GlobalAlloc`][0]
 ///
@@ -117,4 +117,35 @@ pub unsafe trait Alloc {
     ///
     /// [0]: https://doc.rust-lang.org/core/alloc/trait.GlobalAlloc.html#tymethod.realloc
     unsafe fn realloc(ptr: *mut u8, layout: Layout, new_size: usize) -> *mut u8;
+}
+
+/// The "main" allocator
+///
+/// This is the equivalent of `#[global_allocator]`. If you allocate using this type you'll force
+/// the end user to declare a "main" allocator using the `#[main_allocator]` attribute. The
+/// collections in `alloc-many-collections` default to this allocator if no other allocator is
+/// specified.
+pub struct Main;
+
+#[allow(improper_ctypes)]
+extern "Rust" {
+    static ALLOC_MANY_MAIN: &'static dyn GlobalAlloc;
+}
+
+unsafe impl Alloc for Main {
+    unsafe fn alloc(layout: Layout) -> *mut u8 {
+        ALLOC_MANY_MAIN.alloc(layout)
+    }
+
+    unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+        ALLOC_MANY_MAIN.dealloc(ptr, layout)
+    }
+
+    unsafe fn alloc_zeroed(layout: Layout) -> *mut u8 {
+        ALLOC_MANY_MAIN.alloc_zeroed(layout)
+    }
+
+    unsafe fn realloc(ptr: *mut u8, layout: Layout, new_size: usize) -> *mut u8 {
+        ALLOC_MANY_MAIN.realloc(ptr, layout, new_size)
+    }
 }

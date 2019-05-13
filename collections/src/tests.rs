@@ -18,15 +18,15 @@ fn sanity() {
     #[allocator]
     static A: BumpAlloc<consts::U128> = BumpAlloc::new();
 
-    let x: Box<A, _> = Box::new(0u8);
+    let x: Box<_, A> = Box::new(0u8);
     assert_eq!(*x, 0);
 
     // test aligned allocation
-    let y: Box<A, _> = Box::new(1);
+    let y: Box<_, A> = Box::new(1);
     assert_eq!(&*y as *const i32 as usize % 4, 0);
     assert_eq!(*y, 1);
 
-    let z: Box<A, _> = Box::new([2, 3]);
+    let z: Box<_, A> = Box::new([2, 3]);
     assert_eq!(*z, [2, 3]);
 
     // test `Drop` implementation
@@ -38,7 +38,7 @@ fn sanity() {
         }
     }
 
-    let w: Box<A, _> = Box::new([Z, Z]);
+    let w: Box<_, A> = Box::new([Z, Z]);
     drop(w);
     assert_eq!(X.load(Ordering::Relaxed), 0);
 

@@ -7,7 +7,7 @@ use alloc_many::Alloc;
 use crate::unique::Unique;
 
 /// A contiguous growable array type, written `Vec<T>` but pronounced 'vector'.
-pub struct Vec<A, T>
+pub struct Vec<T, A>
 where
     A: Alloc,
 {
@@ -17,7 +17,7 @@ where
     _allocator: PhantomData<A>,
 }
 
-impl<A, T> Vec<A, T>
+impl<A, T> Vec<T, A>
 where
     A: Alloc,
 {
@@ -146,7 +146,7 @@ fn padding_needed_for(layout: &Layout, align: usize) -> usize {
     len_rounded_up.wrapping_sub(len)
 }
 
-impl<A, T> ops::Deref for Vec<A, T>
+impl<A, T> ops::Deref for Vec<T, A>
 where
     A: Alloc,
 {
@@ -157,7 +157,7 @@ where
     }
 }
 
-impl<A, T> ops::DerefMut for Vec<A, T>
+impl<A, T> ops::DerefMut for Vec<T, A>
 where
     A: Alloc,
 {

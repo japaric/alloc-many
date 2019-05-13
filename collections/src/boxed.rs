@@ -1,12 +1,12 @@
 //! A pointer type for heap allocations
 use core::{alloc::Layout, cmp, fmt, marker::PhantomData, ops, ptr};
 
-use alloc_many::Alloc;
+use alloc_many::{Alloc, Main};
 
 use crate::unique::Unique;
 
 /// A pointer type for heap allocations
-pub struct Box<A, T>
+pub struct Box<T, A = Main>
 where
     A: Alloc,
     T: ?Sized,
@@ -15,7 +15,7 @@ where
     ptr: Unique<T>,
 }
 
-impl<A, T> Box<A, T>
+impl<A, T> Box<T, A>
 where
     A: Alloc,
 {
@@ -38,7 +38,7 @@ where
     }
 }
 
-impl<A, T> ops::Deref for Box<A, T>
+impl<A, T> ops::Deref for Box<T, A>
 where
     T: ?Sized,
     A: Alloc,
@@ -50,7 +50,7 @@ where
     }
 }
 
-impl<A, T> ops::DerefMut for Box<A, T>
+impl<A, T> ops::DerefMut for Box<T, A>
 where
     T: ?Sized,
     A: Alloc,
@@ -60,7 +60,7 @@ where
     }
 }
 
-impl<A, T> Drop for Box<A, T>
+impl<A, T> Drop for Box<T, A>
 where
     A: Alloc,
     T: ?Sized,
@@ -75,7 +75,7 @@ where
     }
 }
 
-impl<A, T> fmt::Debug for Box<A, T>
+impl<A, T> fmt::Debug for Box<T, A>
 where
     T: ?Sized + fmt::Debug,
     A: Alloc,
@@ -85,7 +85,7 @@ where
     }
 }
 
-impl<A, T> fmt::Display for Box<A, T>
+impl<A, T> fmt::Display for Box<T, A>
 where
     T: ?Sized + fmt::Display,
     A: Alloc,
@@ -95,31 +95,31 @@ where
     }
 }
 
-impl<A, T> Eq for Box<A, T>
+impl<A, T> Eq for Box<T, A>
 where
     T: ?Sized + Eq,
     A: Alloc,
 {
 }
 
-impl<A, B, T> PartialEq<Box<B, T>> for Box<A, T>
+impl<A, B, T> PartialEq<Box<T, B>> for Box<T, A>
 where
     T: ?Sized + PartialEq,
     A: Alloc,
     B: Alloc,
 {
-    fn eq(&self, other: &Box<B, T>) -> bool {
+    fn eq(&self, other: &Box<T, B>) -> bool {
         <T as PartialEq>::eq(self, other)
     }
 }
 
-impl<A, B, T> PartialOrd<Box<B, T>> for Box<A, T>
+impl<A, B, T> PartialOrd<Box<T, B>> for Box<T, A>
 where
     T: ?Sized + PartialOrd,
     A: Alloc,
     B: Alloc,
 {
-    fn partial_cmp(&self, other: &Box<B, T>) -> Option<cmp::Ordering> {
+    fn partial_cmp(&self, other: &Box<T, B>) -> Option<cmp::Ordering> {
         <T as PartialOrd>::partial_cmp(self, other)
     }
 }
