@@ -1,0 +1,1 @@
+initSidebarItems({"attr":[["allocator","Creates a singleton allocator from a static that implements `GlobalAlloc`"],["oom","Defines the OOM (Out Of Memory) handler"]]});

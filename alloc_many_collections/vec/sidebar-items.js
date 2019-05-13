@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Vec","A contiguous growable array type, written `Vec<T>` but pronounced 'vector'."]]});

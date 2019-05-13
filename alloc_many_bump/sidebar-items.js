@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["consts","Type aliases for many constants."]],"struct":[["BumpAlloc_","Lock-free bump pointer allocator (stable `const-fn` workaround)"]],"type":[["BumpAlloc","Lock-free bump pointer allocator"]]});

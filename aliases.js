@@ -1,0 +1,11 @@
+var ALIASES = {};
+ALIASES["alloc_many"] = {};
+ALIASES["alloc_many_bump"] = {};
+ALIASES["alloc_many_collections"] = {};
+ALIASES["alloc_many_macros"] = {};
+ALIASES["generic_array"] = {};
+ALIASES["proc_macro2"] = {};
+ALIASES["quote"] = {};
+ALIASES["syn"] = {};
+ALIASES["typenum"] = {};
+ALIASES["unicode_xid"] = {};

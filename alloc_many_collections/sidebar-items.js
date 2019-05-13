@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["boxed","A pointer type for heap allocations"],["vec","A contiguous growable array type with heap-allocated contents, written `Vec<T>`."]]});

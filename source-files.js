@@ -1,0 +1,12 @@
+var N = null;var sourcesIndex = {};
+sourcesIndex["alloc_many"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["alloc_many_bump"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["alloc_many_collections"] = {"name":"","files":["boxed.rs","lib.rs","unique.rs","vec.rs"]};
+sourcesIndex["alloc_many_macros"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["generic_array"] = {"name":"","files":["arr.rs","functional.rs","hex.rs","impls.rs","iter.rs","lib.rs","sequence.rs"]};
+sourcesIndex["proc_macro2"] = {"name":"","files":["fallback.rs","lib.rs","strnom.rs","wrapper.rs"]};
+sourcesIndex["quote"] = {"name":"","files":["ext.rs","lib.rs","runtime.rs","to_tokens.rs"]};
+sourcesIndex["syn"] = {"name":"","dirs":[{"name":"gen","files":["gen_helper.rs"]}],"files":["attr.rs","buffer.rs","custom_keyword.rs","custom_punctuation.rs","data.rs","derive.rs","error.rs","export.rs","expr.rs","ext.rs","file.rs","generics.rs","group.rs","ident.rs","item.rs","lib.rs","lifetime.rs","lit.rs","lookahead.rs","mac.rs","macros.rs","op.rs","parse.rs","parse_macro_input.rs","parse_quote.rs","path.rs","print.rs","punctuated.rs","sealed.rs","span.rs","spanned.rs","thread.rs","token.rs","ty.rs"]};
+sourcesIndex["typenum"] = {"name":"","files":["array.rs","bit.rs","int.rs","lib.rs","marker_traits.rs","operator_aliases.rs","private.rs","type_operators.rs","uint.rs"]};
+sourcesIndex["unicode_xid"] = {"name":"","files":["lib.rs","tables.rs"]};
+createSourceSidebar();

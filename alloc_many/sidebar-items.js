@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["Alloc","Singleton version of [`core::alloc::GlobalAlloc`][0]"]]});
