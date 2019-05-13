@@ -1,0 +1,7 @@
+# false positives in thread::spawn (?)
+race:*dealloc
+race:*Inner*
+race:*drop_slow*
+
+# false positive in std::sync::CondVar (?)
+race:destroy

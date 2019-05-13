@@ -1,0 +1,16 @@
+[package]
+authors = ["Jorge Aparicio <jorge@japaric.io>"]
+edition = "2018"
+name = "alloc-many"
+publish = false
+version = "0.0.0-alpha.0"
+
+[dependencies]
+alloc-many-macros = { path = "macros" }
+
+[workspace]
+members = [
+  "bump",
+  "collections",
+  "macros",
+]
