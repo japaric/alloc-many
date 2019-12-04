@@ -1,3 +1,6 @@
+You may also be interested in the alloc-generic `collections` that live [here](https://github.com/japaric/no-std-async-experiments-2)
+
+
 # `alloc-many`
 
 > [Proof of Concept] Allocator singletons and parameterized collections on stable
