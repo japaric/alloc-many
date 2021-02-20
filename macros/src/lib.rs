@@ -66,6 +66,32 @@ pub fn allocator(args: TokenStream, input: TokenStream) -> TokenStream {
     .into()
 }
 
+/// Declares the `Main` allocator
+#[proc_macro_attribute]
+pub fn main_allocator(args: TokenStream, input: TokenStream) -> TokenStream {
+    if !args.is_empty() {
+        return parse::Error::new(Span::call_site(), "`#[main_allocator]` takes no arguments")
+            .to_compile_error()
+            .into();
+    }
+
+    let item = parse_macro_input!(input as ItemStatic);
+
+    let attrs = &item.attrs;
+    let expr = &item.expr;
+    let ident = &item.ident;
+    let ty = &item.ty;
+    let vis = &item.vis;
+    quote!(
+        #(#attrs)*
+        #vis static #ident: #ty = #expr;
+
+        #[no_mangle]
+        static ALLOC_MANY_MAIN: &'static (dyn core::alloc::GlobalAlloc + Sync) = &#ident;
+    )
+    .into()
+}
+
 /// Defines the OOM (Out Of Memory) handler
 #[proc_macro_attribute]
 pub fn oom(args: TokenStream, input: TokenStream) -> TokenStream {

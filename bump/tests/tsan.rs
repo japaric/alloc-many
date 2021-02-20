@@ -34,7 +34,7 @@ fn race() {
 
             let boxes = (0..100)
                 .map(|_| {
-                    let mut x = Box::<A, _>::new(0);
+                    let mut x = Box::<_, A>::new(0);
                     *x += 1;
                     &*x as *const i32 as usize
                 })
